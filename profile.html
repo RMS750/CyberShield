@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - CyberShield</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        header {
+            background-color: #0a6c67;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        header a:hover {
+            text-decoration: underline;
+        }
+        header .settings {
+            display: flex;
+            align-items: center;
+        }
+        header .settings button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: inherit;
+            text-decoration: underline;
+        }
+        header .settings button:hover {
+            text-decoration: none;
+        }
+        .success-banner {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .main-content {
+            flex: 1;
+            margin-right: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .main-content h1 {
+            font-size: 24px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .main-content p {
+            color: #555;
+            text-align: center;
+        }
+        footer {
+            background-color: #0a6c67;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>CyberShield</h1>
+        </div>
+        <nav>
+            <a href="home.html">Announcements</a>
+            <a href="chat.html">Have a conversation</a>
+            <a href="forums.html">Explore the forums</a>
+            <a href="courses.html">Course</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+        <div class="settings">
+            <button id="profile-button">username@gmail.com</button>
+            <a href="index.html" style="margin-left: 15px;">Logout</a>
+        </div>
+    </header>
+    <div class="success-banner">
+        <span>Success, Settings were saved successfully</span>
+        <a href="#" style="margin-left: 10px; color: #0a6c67;">Dismiss</a>
+    </div>
+
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+    
+        .main-content {
+            width: 90%;
+            max-width: 1200px;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+    
+        th {
+            background-color: #106c64;
+            color: white;
+            font-weight: bold;
+            border-bottom: 2px solid #ddd;
+        }
+    
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    
+        tr:hover {
+            background-color: #ddd;
+        }
+    
+        .reset-button {
+            padding: 10px 20px;
+            background-color: #106c64;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+    
+        .reset-button:hover {
+            background-color: #ff2600;
+        }
+    </style>
+    
+    <div class="container">
+        <div class="main-content">
+            <h1>Profile Information</h1>
+            <table>
+                <tr>
+                    <th>Profile ID</th>
+                    <td>0113</td>
+                </tr>
+                <tr>
+                    <th>Date of Joining</th>
+                    <td>20/06/2024</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>username@gmail.com</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>firstname lastname</td>
+                </tr>
+            </table>
+    
+            <h2>Profile Details</h2>
+            <table>
+                <tr>
+                    <th>Courses</th>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <th>Friends</th>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <th>Messages</th>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <th>Wellbeing score</th>
+                    <td>10</td>
+                </tr> 
+            </table>
+            
+            <button class="reset-button" onclick="window.location.href='index.html'">Reset Account</button>
+        </div>
+    </div>    
+    
+
+    <footer>
+        <p>DIA AL BARSHA &middot; <a href="#">Privacy & Terms</a></p>
+    </footer>
+
+    <script>
+        const dismissLink = document.querySelector(".success-banner a");
+        const successBanner = document.querySelector(".success-banner");
+        if (dismissLink && successBanner) {
+            dismissLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                successBanner.style.display = "none";
+            });
+        }
+    </script>
+</body>
+</html>

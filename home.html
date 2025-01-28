@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements - CyberShield</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        header {
+            background-color: #0a6c67;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        header a:hover {
+            text-decoration: underline;
+        }
+        header .settings {
+            display: flex;
+            align-items: center;
+        }
+        header .settings button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: inherit;
+            text-decoration: underline;
+        }
+        header .settings button:hover {
+            text-decoration: none;
+        }
+        .success-banner {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .main-content {
+            flex: 2;
+            margin-right: 20px;
+        }
+        .main-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .main-content h1 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .main-content p {
+            color: #555;
+        }
+        .sidebar {
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .sidebar p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        footer {
+            background-color: #0a6c67;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>CyberShield</h1>
+        </div>
+        <nav>
+            <a href="home.html">Announcements</a>
+            <a href="chat.html">Have a conversation</a>
+            <a href="forums.html">Explore the forums</a>
+            <a href="courses.html">Course</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+        <div class="settings">
+            <button id="profile-button">username@gmail.com</button>
+            <a href="index.html" style="margin-left: 15px;">Logout</a>
+        </div>
+    </header>
+    <div class="success-banner">
+        <span>Success, Settings were saved successfully</span>
+        <a href="#" style="margin-left: 10px; color: #0a6c67;">Dismiss</a>
+    </div>
+    <div class="container">
+        <div class="main-content">
+            <a href="https://www.preciseinvestigation.com/why-cyberbullying-is-a-concern-and-how-a-pi-can-help/" target="_blank">
+                <img src="cyberbullying-image.jpg" alt="Cyber Bullying Awareness">
+            </a>
+        </div>
+        <div class="sidebar">
+            <h2>Congratulations to Paul & Alex.</h2>
+            <p>10/12/2024</p>
+            <p>Certificates will be e-mailed to the highest well-being score gainers by Friday. Do you want to check your well-being scores? Visit the "My profile" page!</p>
+            <h2>Welcome to Cyber Shield, safe for you.</h2>
+            <p>09/12/2024</p>
+            <p>We make sure that no matter what, your safety is our top priority. Don't worry here at Cyber Shield, everyone has a place.</p>
+            <h2>Customize Your Experience</h2>
+            <p>Through Chrome Store, you can customize your screen to anything you want.</p>
+            <p>Contact us: CyberShield@gmail.com</p>
+        </div>
+    </div>
+    <footer>
+        <p>DIA AL BARSHA &middot; <a href="#">Privacy & Terms</a></p>
+    </footer>
+    <script>
+        const dismissLink = document.querySelector(".success-banner a");
+        const successBanner = document.querySelector(".success-banner");
+        if (dismissLink && successBanner) {
+            dismissLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                successBanner.style.display = "none";
+            });
+        }
+    </script>
+</body>
+</html>

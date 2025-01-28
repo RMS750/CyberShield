@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forums - CyberShield</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        header {
+            background-color: #0a6c67;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        header a:hover {
+            text-decoration: underline;
+        }
+        header .settings {
+            display: flex;
+            align-items: center;
+        }
+        header .settings button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: inherit;
+            text-decoration: underline;
+        }
+        header .settings button:hover {
+            text-decoration: none;
+        }
+        .success-banner {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .main-content {
+            flex: 2;
+            margin-right: 20px;
+        }
+        .main-content h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .forums-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .forums-list li {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .forums-list li:hover {
+            background-color: #f0f0f0;
+        }
+        footer {
+            background-color: #0a6c67;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>CyberShield</h1>
+        </div>
+        <nav>
+            <a href="home.html">Announcements</a>
+            <a href="chat.html">Have a conversation</a>
+            <a href="forums.html">Explore the forums</a>
+            <a href="courses.html">Course</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+        <div class="settings">
+            <button id="profile-button">username@gmail.com</button>
+            <a href="index.html" style="margin-left: 15px;">Logout</a>
+        </div>
+    </header>
+    <div class="success-banner">
+        <span>Success, Settings were saved successfully</span>
+        <a href="#" style="margin-left: 10px; color: #0a6c67;">Dismiss</a>
+    </div>
+    <div class="container">
+        <div class="main-content">
+            <h1>Forum Discussions</h1>
+            <div class="search-bar">
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Search forums..."
+                />
+            </div>
+            <ul class="forums-list" id="forums-list">
+                <li data-title="Cyberbullying Awareness">
+                    Cyberbullying Awareness - How to identify and help.
+                </li>
+                <li data-title="Online Safety Tips">
+                    Online Safety Tips for Teenagers and Parents.
+                </li>
+                <li data-title="Social Media Wellbeing">
+                    Social Media Wellbeing and Mental Health.
+                </li>
+                <li data-title="Dealing with Trolls">
+                    Dealing with Trolls: Strategies to Stay Positive.
+                </li>
+                <li data-title="Anonymous Reporting">
+                    Anonymous Reporting - How CyberShield Protects You.
+                </li>
+                <li data-title="Safer Schools">
+                    Safer Schools: Protecting Students Online 
+                </li>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        <p>DIA AL BARSHA &middot; <a href="#">Privacy & Terms</a></p>
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById("search-input");
+        const forumsList = document.getElementById("forums-list");
+        const forumsItems = forumsList.querySelectorAll("li");
+
+        searchInput.addEventListener("input", () => {
+            const query = searchInput.value.toLowerCase();
+            forumsItems.forEach((item) => {
+                const title = item.getAttribute("data-title").toLowerCase();
+                if (title.includes(query)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+
+        const dismissLink = document.querySelector(".success-banner a");
+        const successBanner = document.querySelector(".success-banner");
+        if (dismissLink && successBanner) {
+            dismissLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                successBanner.style.display = "none";
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - CyberShield</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        header {
+            background-color: #0a6c67;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        header a:hover {
+            text-decoration: underline;
+        }
+        header .settings {
+            display: flex;
+            align-items: center;
+        }
+        header .settings button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: inherit;
+            text-decoration: underline;
+        }
+        header .settings button:hover {
+            text-decoration: none;
+        }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 100px);
+            margin: 0 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+        .chat-messages .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background: #e7f3f2;
+            max-width: 70%;
+        }
+        .chat-messages .message.self {
+            background: #0a6c67;
+            color: white;
+            margin-left: auto;
+        }
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background: #f3f3f3;
+            border-top: 1px solid #ddd;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .chat-input button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #0a6c67;
+            color: white;
+            cursor: pointer;
+        }
+        .chat-input button:hover {
+            background: #05554e;
+        }
+        footer {
+            background-color: #0a6c67;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>CyberShield</h1>
+        </div>
+        <nav>
+            <a href="home.html">Announcements</a>
+            <a href="chat.html">Have a conversation</a>
+            <a href="forums.html">Explore the forums</a>
+            <a href="courses.html">Course</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+        <div class="settings">
+            <button id="profile-button">username@gmail.com</button>
+            <a href="index.html" style="margin-left: 15px;">Logout</a>
+        </div>
+    </header>
+    <div class="chat-container">
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <footer>
+        <p>DIA AL BARSHA &middot; <a href="#">Privacy & Terms</a></p>
+    </footer>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Chat messages DOM
+        const chatMessages = document.getElementById("chat-messages");
+
+        // Load and display messages in real-time
+        const q = query(collection(db, "messages"), orderBy("timestamp"));
+        onSnapshot(q, (querySnapshot) => {
+            chatMessages.innerHTML = ""; // Clear current messages
+            querySnapshot.forEach((doc) => {
+                const { username, message } = doc.data();
+                const messageDiv = document.createElement("div");
+                messageDiv.className = `message ${username === "Anonymous" ? "self" : ""}`;
+                messageDiv.innerHTML = `<strong>${username}:</strong> ${message}`;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+            });
+        });
+
+        // Send message to Firestore
+        const sendMessage = async () => {
+            const messageInput = document.getElementById("messageInput");
+            const messageText = messageInput.value;
+
+            if (messageText.trim() !== "") {
+                await addDoc(collection(db, "messages"), {
+                    username: "Anonymous", // Update with real username if needed
+                    message: messageText,
+                    timestamp: serverTimestamp()
+                });
+                messageInput.value = ""; // Clear the input
+            }
+        };
+    </script>
+</body>
+</html>
